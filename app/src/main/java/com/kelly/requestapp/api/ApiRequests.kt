@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface PlaceHolderApi {
+interface ApiRequests {
 
     @GET("items")
     suspend fun getItems(): List<Item>

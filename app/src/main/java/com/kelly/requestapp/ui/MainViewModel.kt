@@ -2,7 +2,7 @@ package com.kelly.requestapp.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.kelly.requestapp.api.ServiceProvider
+import com.kelly.requestapp.api.RequestProvider
 import com.kelly.requestapp.models.Item
 import com.kelly.requestapp.models.Student
 import kotlinx.coroutines.CoroutineScope
@@ -20,13 +20,13 @@ class MainViewModel : ViewModel() {
 
     fun getItems() {
         CoroutineScope(Dispatchers.IO).launch {
-            itemsLiveData.postValue(ServiceProvider.placeHolderApi.getItems())
+            itemsLiveData.postValue(RequestProvider.apiRequests.getItems())
         }
     }
 
     fun addStudent(newStudent: Student) {
         CoroutineScope(Dispatchers.IO).launch {
-            studentsLiveData.postValue(ServiceProvider.placeHolderApi.addStudents(newStudent))
+            studentsLiveData.postValue(RequestProvider.apiRequests.addStudents(newStudent))
         }
     }
 }
