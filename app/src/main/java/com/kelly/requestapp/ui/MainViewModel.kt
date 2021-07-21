@@ -1,5 +1,6 @@
 package com.kelly.requestapp.ui
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kelly.requestapp.api.RequestProvider
@@ -8,19 +9,23 @@ import com.kelly.requestapp.models.Student
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class MainViewModel : ViewModel() {
+class MainViewModel() : ViewModel() {
 
     val itemsLiveData = MutableLiveData<List<Item>>()
     val studentsLiveData = MutableLiveData<List<Student>>()
 
-//    val studentsLiveData = liveData<List<Student>> {
+    //    val studentsLiveData = liveData<List<Student>> {
 //        itemsLiveData.postValue(ServiceProvider.placeHolderApi.getItems())
 //    }
-
     fun getItems() {
         CoroutineScope(Dispatchers.IO).launch {
-            itemsLiveData.postValue(RequestProvider.apiRequests.getItems())
+            try {
+                itemsLiveData.postValue(RequestProvider.apiRequests.getItems())
+            } catch (ex: Exception) {
+
+            }
         }
     }
 
